@@ -13,10 +13,26 @@ connectDB();
 
 const app = express();
 
-// CORS configuration
+// ✅ Allowed origins
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://hospital-admin-final.netlify.app",
+  "https://hospital-final.netlify.app"
+];
+
+// ✅ CORS configuration
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "*",
+    origin: (origin, callback) => {
+      // Allow requests with no origin (Postman, server-to-server)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS not allowed"));
+      }
+    },
     credentials: true,
   })
 );
