@@ -17,7 +17,8 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://hospital-admin-final.netlify.app",
-  "https://hospital-final.netlify.app"
+  "https://hospital-final.netlify.app",
+  "https://694574ea58177397fc85700a--hospital-final.netlify.app"
 ];
 
 // ✅ CORS configuration
